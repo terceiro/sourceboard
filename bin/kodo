@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+root = File.join(File.dirname(__FILE__), '..')
+if File.exists?(File.join(root, 'Rakefile'))
+  # development mode without -I
+  local_lib = File.join(root, 'lib')
+  $: << local_lib
+  ENV['RUBYLIB'] = [ENV['RUBYLIB'], local_lib].compact.join(':')
+end
+
+backend = fork do
+  # FIXME prevent two backend instances to run simultaneously (??)
+  require 'kodo/web/backend'
+  Kodo::Web::Backend.start!
+end
+
+sleep 2
+require 'kodo/web/frontend'
+Kodo::Web::Frontend.run!
+Process.kill("TERM", backend)
+Process.wait
