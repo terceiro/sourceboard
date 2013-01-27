@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'feature_helper'
 
 describe 'basics', :type => 'feature', :js => true do
   it 'should display a title' do
