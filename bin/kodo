@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-root = File.join(File.dirname(__FILE__), '..')
+root = File.join(File.dirname(File.realpath(__FILE__)), '..')
 if File.exists?(File.join(root, 'Rakefile'))
   # development mode without -I
   local_lib = File.join(root, 'lib')
