@@ -1,0 +1,3 @@
+#!/usr/bin/perl
+
+puts "hello, world!"
