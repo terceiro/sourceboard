@@ -1,4 +1,4 @@
 require 'capybara/rspec'
-require 'kodo/web/backend'
-Capybara.app = Kodo::Web::Backend
+require 'source_board/web/backend'
+Capybara.app = SourceBoard::Web::Backend
 

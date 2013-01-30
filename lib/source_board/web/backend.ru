@@ -1,2 +1,2 @@
-require 'kodo/web/backend'
-run Kodo::Web::Backend
+require 'source_board/web/backend'
+run SourceBoard::Web::Backend

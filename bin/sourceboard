@@ -10,12 +10,12 @@ end
 
 backend = fork do
   # FIXME prevent two backend instances to run simultaneously (??)
-  require 'kodo/web/backend'
-  Kodo::Web::Backend.start!
+  require 'source_board/web/backend'
+  SourceBoard::Web::Backend.start!
 end
 
 sleep 2
-require 'kodo/web/frontend'
-Kodo::Web::Frontend.run!
+require 'source_board/web/frontend'
+SourceBoard::Web::Frontend.run!
 Process.kill("TERM", backend)
 Process.wait
