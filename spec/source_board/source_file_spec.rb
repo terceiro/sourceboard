@@ -32,4 +32,8 @@ describe SourceBoard::SourceFile do
     file('spec/spec_helper.rb').should == file('spec/spec_helper.rb')
   end
 
+  it 'has a language' do
+    file('spec/spec_helper.rb').language.name.should == 'ruby'
+  end
+
 end

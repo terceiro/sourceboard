@@ -1,3 +1,5 @@
+require 'source_board/language'
+
 module SourceBoard
 
   class SourceFile
@@ -20,6 +22,10 @@ module SourceBoard
 
     def ==(other)
       other.is_a?(SourceFile) && other.full_path == self.full_path
+    end
+
+    def language
+      @language ||= SourceBoard::Language.detect(self)
     end
 
   end
