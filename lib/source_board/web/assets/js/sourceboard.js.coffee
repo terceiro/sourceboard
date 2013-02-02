@@ -1,1 +1,2 @@
-#= require foo
+#= require jquery
+#= require bootstrap
