@@ -29,6 +29,15 @@ module SourceBoard
       end
     end
 
+    def language_breakdown
+      @language_breakdown ||= files.inject({}) do |breakdown,file|
+        lang = file.language.name
+        breakdown[lang] ||= 0
+        breakdown[lang] += 1
+        breakdown
+      end
+    end
+
   end
 
 end

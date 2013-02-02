@@ -19,4 +19,10 @@ describe SourceBoard::SourceTree do
     @tree['ruby'].mime_type.should == 'text/x-ruby'
   end
 
+  it 'calculates a language breakdown' do
+    @tree.language_breakdown['ruby'].should > 0
+    @tree.language_breakdown['python'].should > 0
+  end
+
+
 end
