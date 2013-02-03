@@ -13,7 +13,7 @@ describe SourceBoard::Parser do
   end
 
   it 'accepts any language by default' do
-    @parser.should be_accept(:whatever)
+    @parser.accept?(:whatever).should be_true
   end
 
 end
