@@ -1,10 +1,10 @@
 require 'spec_helper'
-require 'source_board/parser'
+require 'source_board/parser/base'
 
-describe SourceBoard::Parser do
+describe SourceBoard::Parser::Base do
 
   before(:all) do
-    @parser = SourceBoard::Parser.new
+    @parser = SourceBoard::Parser::Base.new
   end
 
   it 'must indicate that at least loc and number_of_definitions are supported' do
