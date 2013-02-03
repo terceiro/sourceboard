@@ -4,11 +4,16 @@ module SourceBoard
 
   class SourceTree
 
+    attr_reader :directory
+
     def initialize(directory)
+      @directory = directory
       Dir.chdir(directory) do
         pipe = IO.popen('xargs file --mime-type', 'w+')
         Dir.glob('**/*').each do |f|
-          pipe.puts(f)
+          unless File.directory?(f)
+            pipe.puts(f)
+          end
         end
         pipe.close_write
         @files = pipe.readlines.map do |line|

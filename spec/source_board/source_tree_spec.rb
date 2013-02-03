@@ -4,7 +4,12 @@ require 'source_board/source_tree'
 describe SourceBoard::SourceTree do
 
   before(:all) do
-    @tree = SourceBoard::SourceTree.new(SOURCE_BOARD_ROOT + '/spec/data/language_detect')
+    @directory = SOURCE_BOARD_ROOT + '/spec/data'
+    @tree = SourceBoard::SourceTree.new(@directory)
+  end
+
+  it 'stores directory' do
+    @tree.directory.should == @directory
   end
 
   it 'detects files' do
@@ -12,11 +17,15 @@ describe SourceBoard::SourceTree do
   end
 
   it 'offer file-name based access' do
-    @tree['ruby.rb'].should_not be_nil
+    @tree['language_detect/ruby.rb'].should_not be_nil
+  end
+
+  it 'ignores directories' do
+    @tree['language_detect'].should be_nil
   end
 
   it 'detects mime types' do
-    @tree['ruby'].mime_type.should == 'text/x-ruby'
+    @tree['language_detect/ruby'].mime_type.should == 'text/x-ruby'
   end
 
   it 'calculates a language breakdown' do
