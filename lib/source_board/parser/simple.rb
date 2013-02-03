@@ -18,8 +18,8 @@ module SourceBoard
             'id'        => file.path,
             'name'      => File.basename(file.path),
             'metrics'   => {
-              'loc'                   => loc_data[file.path],
-              'number_of_definitions' => def_data[file.path],
+              'loc'     => loc_data[file.path],
+              'nom'     => def_data[file.path],
             },
           }
         end
@@ -35,10 +35,12 @@ module SourceBoard
       end
 
       def process_with_ctags(source_tree)
-        process_pipe(source_tree, 'xargs ctags -f -') do |data,line|
-          tag, path = line.split
+        process_pipe(source_tree, 'xargs ctags -x') do |data,line|
+          tag, kind, line_number, path, signature = line.split
           data[path] ||= 0
-          data[path] += 1
+          if ["member", "function", "method"].include?(kind)
+            data[path] += 1
+          end
         end
       end
 

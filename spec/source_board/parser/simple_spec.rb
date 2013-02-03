@@ -14,12 +14,12 @@ describe SourceBoard::Parser::Simple do
     @itself.should_not be_nil
   end
 
-  it 'calculates LOC' do
+  it 'calculates lines of code' do
     @itself['metrics']['loc'] > 0
   end
 
-  it 'calculates number of definitions' do
-    @itself['metrics']['number_of_definitions'] > 0
+  it 'calculates number of methods' do
+    @itself['metrics']['nom'] > 0
   end
 
 end

@@ -22,10 +22,9 @@ module SourceBoard
       #           of the project source tree.
       #
       # +:metrics+::  a hash containing metrics for the given element. +:loc+
-      #               and +:number_of_definitions+ are mandatory metrics and
-      #               therefore these keys must be present, but a parser may
-      #               provide any other metrics. The hash values must be
-      #               numbers.
+      #               and +:nom+ are mandatory metrics and therefore these keys
+      #               must be present, but a parser may provide any other
+      #               metrics. The hash values must be numbers.
       #
       # The following keys are optional:
       #
@@ -46,14 +45,13 @@ module SourceBoard
       end
 
       # Returns a list of symbols indicating the names of the metrics supported
-      # by this parser. At least +loc+ (lines of code) and
-      # +number_of_definitions+ (a generalization of "number of methods") must
-      # be supported.
+      # by this parser. At least +:loc+ (lines of code) and +:nom+ (number of
+      # methods) must be supported.
       #
       # This method may be overriden by subclasses.
       #
       def metrics
-        [ :loc, :number_of_definitions ]
+        [ :loc, :nom ]
       end
 
     end
