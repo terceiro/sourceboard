@@ -28,30 +28,29 @@ module SourceBoard
       private
 
       def process_with_wc(source_tree)
-        pipe = IO.popen('xargs wc -l', 'w+')
-        source_tree.files.each do |source_file|
-          pipe.puts source_file.path
-        end
-        pipe.close_write
-        data = {}
-        pipe.each_line do |line|
+        process_pipe(source_tree, 'xargs wc -l') do |data,line|
           loc, path = line.split
           data[path] = loc.to_i
         end
-        data
       end
 
       def process_with_ctags(source_tree)
-        pipe = IO.popen('xargs ctags -f -', 'w+')
+        process_pipe(source_tree, 'xargs ctags -f -') do |data,line|
+          tag, path = line.split
+          data[path] ||= 0
+          data[path] += 1
+        end
+      end
+
+      def process_pipe(source_tree, command)
+        pipe = IO.popen(command, 'w+')
         source_tree.files.each do |source_file|
           pipe.puts source_file.path
         end
         pipe.close_write
         data = {}
         pipe.each_line do |line|
-          tag, path = line.split
-          data[path] ||= 0
-          data[path] += 1
+          yield(data, line)
         end
         data
       end
