@@ -52,6 +52,7 @@ module SourceBoard
         pipe.each_line do |line|
           yield(data, line)
         end
+        pipe.close
         data
       end
 
