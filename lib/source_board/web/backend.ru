@@ -2,10 +2,11 @@ $: << File.dirname(File.realpath(__FILE__)) + '/../..'
 require 'source_board/web/backend'
 
 require 'sprockets'
+require 'sass'
+require 'coffee_script'
 
 map '/assets' do
   root = File.join(File.dirname(File.realpath(__FILE__)) + '/assets')
-  puts root
   environment = Sprockets::Environment.new(root)
   environment.append_path 'bootstrap/css'
   environment.append_path 'bootstrap/js'
