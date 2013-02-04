@@ -5,23 +5,31 @@
     <link rel="stylesheet" href="/assets/sourceboard.css"/>
   </head>
   <body>
-    <div id="container" class="row">
+
+    <div id='openproject'>
+      <a class='btn open-project'>Open</a>
+    </div>
+
+    <div id="visualization" class="row">
       <div id='sidebar' class="span3">
         <div class="well sidebar-nav">
           <ul class="nav nav-list">
-            <li class="nav-header">Foo</li>
-            <li class='active'><a href="#">Foo 1</a></li>
-            <li><a href="#">Foo 2</a></li>
-            <li class="nav-header">Bar</li>
-            <li><a href="#">Bar 1</a></li>
-            <li><a href="#">Bar 2</a></li>
+            <li class="nav-header">Project</li>
+            <li><a href='#' class='settings'>Settings</a></li>
+            <li><a href='#' class='change-project'>Change project</a></li>
           </ul>
         </div>
       </div>
-      <div id='visualization' class="span9">
+      <div id='canvas' class="span9">
         visualization here
       </div>
     </div>
+
+    <div id='settings'>
+      <h1>Settings</h1>
+      <a class='btn save-settings'>Save settings</a>
+    </div>
+
     <script type="text/javascript" src="/assets/sourceboard.js"></script>
   </body>
 </html>
