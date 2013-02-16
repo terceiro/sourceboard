@@ -13,6 +13,9 @@ map '/assets' do
   environment.append_path 'bootstrap/jquery'
   environment.append_path 'js'
   environment.append_path 'css'
+  unless ENV['RACK_ENV'] == 'production'
+    environment.append_path 'test'
+  end
   run environment
 end
 
