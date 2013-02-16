@@ -8,10 +8,10 @@ module SourceBoard
 
       def parse!(source_tree)
         loc_data = Dir.chdir(source_tree.directory) do
-          process_with_wc(source_tree)
+          extract_loc_data(source_tree)
         end
         nom_data = Dir.chdir(source_tree.directory) do
-          process_with_ctags(source_tree)
+          extract_nom_data(source_tree)
         end
         source_tree.files.map do |file|
           {
@@ -28,14 +28,14 @@ module SourceBoard
 
       private
 
-      def process_with_wc(source_tree)
+      def extract_loc_data(source_tree)
         process_pipe(source_tree, 'xargs wc -l') do |data,line|
           loc, path = line.split
           data[path] = loc.to_i
         end
       end
 
-      def process_with_ctags(source_tree)
+      def extract_nom_data(source_tree)
         process_pipe(source_tree, 'xargs ctags -x') do |data,line|
           tag, kind, line_number, path, signature = line.split
           data[path] ||= 0
