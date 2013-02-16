@@ -16,10 +16,11 @@ module SourceBoard
         source_tree.files.map do |file|
           {
             'id'        => file.path,
+            'path'      => file.path,
             'name'      => File.basename(file.path),
             'metrics'   => {
               'loc'     => loc_data[file.path],
-              'nom'     => def_data[file.path],
+              'nom'     => def_data[file.path] || 0,
             },
           }
         end
