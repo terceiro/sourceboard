@@ -10,8 +10,8 @@ module SourceBoard
         loc_data = Dir.chdir(source_tree.directory) do
           process_with_wc(source_tree)
         end
-        def_data = Dir.chdir(source_tree.directory) do
-          def_data = process_with_ctags(source_tree)
+        nom_data = Dir.chdir(source_tree.directory) do
+          process_with_ctags(source_tree)
         end
         source_tree.files.map do |file|
           {
@@ -20,7 +20,7 @@ module SourceBoard
             'name'      => File.basename(file.path),
             'metrics'   => {
               'loc'     => loc_data[file.path],
-              'nom'     => def_data[file.path] || 0,
+              'nom'     => nom_data[file.path] || 0,
             },
           }
         end
