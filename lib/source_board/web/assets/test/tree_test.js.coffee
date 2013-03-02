@@ -11,17 +11,17 @@ input = [
 tree = new Tree(input)
 
 test "tree root", ->
-  ok(tree.children['foo'] instanceof Tree)
+  ok(tree.children_by_name['foo'] instanceof Tree)
 
 test "nested directories", ->
-  ok(tree.children['foo'].children['bar'] instanceof Tree)
+  ok(tree.children_by_name['foo'].children_by_name['bar'] instanceof Tree)
 
 test "file inside directory", ->
-  equal(tree.children['foo'].children['bar.js'].name, 'bar.js')
+  equal(tree.children_by_name['foo'].children_by_name['bar.js'].name, 'bar.js')
 
 test "file inside nested directory", ->
   equal(
-    tree.children['foo'].children['bar'].children['qux.js'].name,
+    tree.children_by_name['foo'].children_by_name['bar'].children_by_name['qux.js'].name,
     'qux.js'
   )
 
